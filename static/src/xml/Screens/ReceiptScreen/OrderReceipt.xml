@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="CustomOrderReceipt" owl="1">
+        <div class="pos-receipt">
+            <t t-if="receipt.company.logo">
+                <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"/>
+                <br/>
+            </t>
+            <t t-if="!receipt.company.logo">
+                <h2 class="pos-receipt-center-align">
+                    <t t-esc="receipt.company.name" />
+                </h2>
+                <br/>
+            </t>
+            <div class="pos-receipt-contact">
+                <t t-if="receipt.company.contact_address">
+                    <div><t t-esc="receipt.company.contact_address" /></div>
+                </t>
+                <t t-if="receipt.company.phone">
+                    <div>Tel:<t t-esc="receipt.company.phone" /></div>
+                </t>
+                <t t-if="receipt.company.vat">
+                    <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>
+                </t>
+                <t t-if="receipt.company.email">
+                    <div><t t-esc="receipt.company.email" /></div>
+                </t>
+                <t t-if="receipt.company.website">
+                    <div><t t-esc="receipt.company.website" /></div>
+                </t>
+                <t t-if="receipt.header_html">
+                    <t t-raw="receipt.header_html" />
+                </t>
+                <t t-if="!receipt.header_html and receipt.header">
+                    <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
+                </t>
+                <t t-if="receipt.cashier">
+                    <div class="cashier">
+                        <div>--------------------------------</div>
+                        <div>Served by <t t-esc="receipt.cashier" /></div>
+                    </div>
+                </t>
+            </div>
+            <br /><br />
+            <!-- Orderlines -->
+            <!--<div>
+                voila le config
+                <span t-esc="receipt.pos_config"/>
+            </div>-->
+            <div class="orderlines">
+                <t t-call="CustomOrderLinesReceipt"/>
+            </div>
+
+            <!-- Subtotal -->
+            <div style="width:100% !important;float: right;border-bottom:1px solid #000000;">
+                <table class="table table-sm table-bordered pos-receipt-left-align" style="color:transparent;width:40% !important;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <br/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-bordered pos-receipt-right-align" style="font-size:14px !important;width:60% !important;">
+                    <tbody>
+                        <t t-if="!isTaxIncluded">
+                            <tr>
+                                <td>Subtotal</td>
+                                <td><span t-esc="env.pos.format_currency(receipt.subtotal)" class="pos-receipt-right-align"/></td>
+                            </tr>
+                            <tr t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
+                                <td><t t-esc="tax.name" /></td>
+                                <td><span t-esc='env.pos.format_currency_no_symbol(tax.amount)' class="pos-receipt-right-align"/></td>
+                            </tr>
+                        </t>
+                        <tr class="spaceUnder spaceTop">
+                            <td><strong class="pos-receipt-left-align">Total</strong></td>
+                            <td width="80%"><span t-esc="env.pos.format_currency(receipt.total_without_discount)" class="pos-receipt-right-align"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong class="pos-receipt-left-align">Discount</strong></td>
+                            <td width="80%"><span t-esc="env.pos.format_currency(Math.abs(receipt.discount_global))" class="pos-receipt-right-align"/></td>
+                        </tr>
+                        <tr class="spaceUnder spaceTop">
+                            <td><strong class="pos-receipt-left-align">Total to pay</strong></td>
+                            <td width="80%"><span t-esc="env.pos.format_currency(receipt.total_with_tax)" class="pos-receipt-right-align"/></td>
+                        </tr>
+
+
+                        <tr t-if="receipt.total_discount" class="spaceUnder spaceTop">
+                            <td><strong class="pos-receipt-left-align">Discounts </strong></td>
+                            <td><span t-esc="env.pos.format_currency(receipt.total_discount)" class="pos-receipt-right-align"/></td>
+                        </tr>
+                        <t t-if="receipt.total_rounded != receipt.total_with_tax">
+                            <tr class="spaceUnder spaceTop">
+                                <td>Rounding</td>
+                                <td><span t-esc='env.pos.format_currency(receipt.rounding_applied)' class="pos-receipt-right-align"/></td>
+                            </tr>
+                            <tr class="spaceUnder spaceTop">
+                                <td>To Pay</td>
+                                <td><span t-esc='env.pos.format_currency(receipt.total_rounded)' class="pos-receipt-right-align"/></td>
+                            </tr>
+                        </t>
+                        <tr t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid" class="spaceUnder spaceTop">
+                            <td><strong class="pos-receipt-left-align"><t t-esc="line.name" /> </strong></td>
+                            <td><span t-esc="env.pos.format_currency(line.amount)" class="pos-receipt-right-align"/></td>
+                        </tr>
+                        <tr class="spaceUnder spaceTop">
+                            <td><strong class="pos-receipt-left-align">Change </strong></td>
+                            <td><span t-esc="env.pos.format_currency(receipt.change)" class="pos-receipt-right-align"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="before-footer" />
+
+            <!-- Footer -->
+            <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
+                <t t-raw="receipt.footer_html" />
+            </div>
+
+            <div t-if="!receipt.footer_html and receipt.footer"  class="pos-receipt-center-align" style="white-space:pre-line">
+                <br/>
+                <t t-esc="receipt.footer" />
+                <br/>
+                <br/>
+            </div>
+
+            <div class="after-footer">
+                <t t-foreach="receipt.paymentlines" t-as="line">
+                    <t t-if="line.ticket">
+                        <br />
+                        <div class="pos-payment-terminal-receipt">
+                            <t t-raw="line.ticket" />
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+            <div class="pos-receipt-order-data" style="font-size:80%;">
+                <div><strong><t t-esc="receipt.name" /></strong></div>
+                <t t-if="receipt.date.localestring">
+                    <div><t t-esc="receipt.date.localestring" /></div>
+                </t>
+                <t t-else="">
+                    <div><t t-esc="receipt.date.validation_date" /></div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="CustomOrderLinesReceipt" owl="1">
+        <style>
+                tr.spaceUnder>td {
+                    padding-bottom: 0.6em;
+                }
+                tr.spaceTop>td {
+                    padding-top: 0.6em;
+                }
+
+                tr.midText>td {
+                    font-size:12px !important;
+                }
+                .borderBottom {
+                    border-bottom:1px solid #000000;
+                }
+                .borderTop {
+                    border-top:1px solid #000000;
+                }
+
+
+
+            </style>
+        <table class="table table-sm table-bordered borderBottom">
+            <thead>
+                <tr class="borderTop borderBottom">
+                    <th width="45%"><strong>Designation</strong></th>
+                    <th width="5%"><center><strong>Qty</strong></center></th>
+                    <th width="20%"><center><strong>P.U</strong></center></th>
+                    <th width="30%"><center><strong>Total</strong></center></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr t-foreach="receipt.orderlines" t-as="line" t-key="line.id" class="spaceUnder spaceTop midText">
+                    <t t-if="!line.is_discount_line">
+                        <td><strong>[<t t-esc="line.product_default_code" />] </strong><t t-esc="line.product_name" /><!--<t t-esc="line.product_name_wrapped[0]" />--></td>
+                        <td><center><t t-esc="line.quantity" /></center></td>
+                        <td>
+                            <center>
+                                <t>
+                                    <t t-esc="env.pos.format_currency_no_symbol(line.price)" />
+                                </t>
+                            </center>
+                            <center t-if="line.discount !== 0" class="borderTop" >
+                                <b>Discount </b><t t-esc="line.discount" />%
+                            </center>
+                        </td>
+                        <td><center><t t-esc="env.pos.format_currency_no_symbol(line.price_display)" /></center></td>
+                    </t>
+                </tr>
+            </tbody>
+        </table>
+    </t>
+
+</templates>

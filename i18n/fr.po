@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_custom_order_receipt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-16 19:28+0000\n"
+"PO-Revision-Date: 2023-05-16 19:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Change"
+msgstr "Rendu"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Designation"
+msgstr "Désignation"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Discount"
+msgstr "Remise"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Discounts"
+msgstr "Remises"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Logo"
+msgstr "Logo"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "P.U"
+msgstr "P.U"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Qty"
+msgstr "Qté"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Rounding"
+msgstr "Arrondi"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Served by"
+msgstr "Servi par"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Tel:"
+msgstr "Tel:"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "To Pay"
+msgstr "Net à payer"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: pos_custom_order_receipt
+#. openerp-web
+#: code:addons/pos_custom_order_receipt/static/src/xml/Screens/ReceiptScreen/OrderReceipt.xml:0
+#, python-format
+msgid "Total to pay"
+msgstr "Net à payer"
