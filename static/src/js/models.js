@@ -1,4 +1,4 @@
-odoo.define('pos_product_with_default_code.Orderline', function (require) {
+odoo.define('pos_custom_order_receipt.models', function (require) {
     "use strict";
     var models = require('point_of_sale.models');
     var _super_orderline = models.Orderline.prototype;
